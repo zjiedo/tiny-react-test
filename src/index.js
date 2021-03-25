@@ -14,6 +14,34 @@ const virtualDOM = (
   </div>
 )
 
-TinyReact.render(virtualDOM, root)
+// TinyReact.render(virtualDOM, root)
 
-console.log(virtualDOM)
+// console.log(virtualDOM)
+
+// function Demo () {
+//   return <div>&hearts;</div>
+// }
+// function Header (props) {
+//   return (
+//     <div>
+//       {props.title}
+//       <Demo />
+//     </div>
+//   )
+// }
+class Alert extends TinyReact.Component {
+  constructor (props) {
+    super(props)
+  }
+  render () {
+    return (
+      <div>
+        {this.props.title} <br />
+        {this.props.name}
+      </div>
+    )
+  }
+}
+// TinyReact.render(<Header title="hello"/>, root)
+
+TinyReact.render(<Alert title="hello" name="alert"/>, root)
