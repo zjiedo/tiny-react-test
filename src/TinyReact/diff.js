@@ -2,6 +2,7 @@ import createDOMElement from './createDOMElement'
 import mountElement from './mountElement'
 import updateNodeElement from './updateNodeElement'
 import updateTextNode from './updateTextNode'
+import unmountNode from './unmountNode'
 
 export default function diff (virtualDOM, container, oldDOM) {
   const oldVirtualDOM = oldDOM && oldDOM._virtualDOM
@@ -23,5 +24,18 @@ export default function diff (virtualDOM, container, oldDOM) {
       console.log(child, i)
       diff(child, oldDOM, oldDOM.childNodes[i])
     })
+
+    // 删除节点
+    // 获取旧节点
+    let oldChildNodes = oldDOM.childNodes || {}
+    if (oldChildNodes.length > virtualDOM.children.length) {
+      for (
+        let i = oldChildNodes.length -1;
+        i > virtualDOM.children.length -1;
+        i--
+      ) {
+        unmountNode(oldChildNodes[i])
+      }
+    }
   }
 }
