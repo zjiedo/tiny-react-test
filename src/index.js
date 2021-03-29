@@ -75,15 +75,14 @@ class Alert extends TinyReact.Component {
     this.state = {
       title: 'Default Title'
     }
-    this.handleClick = this.handleClick.bind(this)
+    // this.handleClick = this.handleClick.bind(this)
   }
   handleClick () {
-    this.setState({
-      title: 'change hello'
-    })
+    // this.setState({
+    //   title: 'change hello'
+    // })
   }
   render () {
-    console.log(this.state)
     return (
       <div>
         {this.props.title} <br />
@@ -99,3 +98,7 @@ class Alert extends TinyReact.Component {
 // // TinyReact.render(<Header title="hello"/>, root)
 
 TinyReact.render(<Alert title="hello" name="alert"/>, root)
+
+setTimeout(() => {
+  TinyReact.render(<Alert title="haha" name="111"/>, root)
+}, 2000)
