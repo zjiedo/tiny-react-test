@@ -1,7 +1,45 @@
 
 import TinyReact from './TinyReact'
 
+
 const root = document.getElementById("root")
+function Demo () {
+  return <div>&hearts;</div>
+}
+class Header extends TinyReact.Component {
+  render () {
+   return (
+    <div>
+      {this.props.title}
+      <Demo />
+    </div>
+   )
+  }
+}
+
+class DemoRef extends TinyReact.Component {
+  constructor (props) {
+    super(props)
+    this.handleClick = this.handleClick.bind(this)
+  }
+  handleClick () {
+    console.log(this.input.value)
+    console.log(this.header)
+  }
+  componentDidMount () {
+    console.log('componentDidMount')
+  }
+  render() {
+    return (
+      <div>
+        <input type="text" value="12213" ref={input => (this.input = input)}/>
+        <button onClick={this.handleClick}>按钮</button>
+        <Header title="haha" ref={header => (this.header = header)}/>
+      </div>
+    )
+  }
+}
+TinyReact.render(<DemoRef/>, root)
 // const virtualDOM = (
 //   <div className="container">
 //     <h1>你好 Tiny React</h1>
@@ -58,47 +96,46 @@ const root = document.getElementById("root")
 
 // console.log(virtualDOM)
 
-// function Demo () {
-//   return <div>&hearts;</div>
-// }
-// function Header (props) {
-//   return (
-//     <div>
-//       {props.title}
-//       <Demo />
-//     </div>
-//   )
-// }
-class Alert extends TinyReact.Component {
-  constructor (props) {
-    super(props)
-    this.state = {
-      title: 'Default Title'
-    }
-    // this.handleClick = this.handleClick.bind(this)
-  }
-  handleClick () {
-    // this.setState({
-    //   title: 'change hello'
-    // })
-  }
-  render () {
-    return (
-      <div>
-        {this.props.title} <br />
-        {this.props.name}
-        <div>
-          { this.state.title }
-          <button onClick={this.handleClick}>改变title</button>
-        </div>
-      </div>
-    )
-  }
-}
-// // TinyReact.render(<Header title="hello"/>, root)
 
-TinyReact.render(<Alert title="hello" name="alert"/>, root)
+// class Alert extends TinyReact.Component {
+//   constructor (props) {
+//     super(props)
+//     this.state = {
+//       title: 'Default Title'
+//     }
+//     // this.handleClick = this.handleClick.bind(this)
+//   }
+//   handleClick () {
+//     this.setState({
+//       title: 'change hello'
+//     })
+//   }
+//   componentWillReceiveProps (nextProps) {
+//     console.log(nextProps)
+//   }
+//   componentWillUpdate () {
+//     console.log('compnentWillUpdate')
+//   }
+//   componentDidUpdate () {
+//     console.log('compnentDidUpdate')
+//   }
+//   render () {
+//     return (
+//       <div>
+//         {this.props.title} <br />
+//         {this.props.name}
+//         <div>
+//           { this.state.title }
+//           <button onClick={this.handleClick}>改变title</button>
+//         </div>
+//       </div>
+//     )
+//   }
+// }
+// // // TinyReact.render(<Header title="hello"/>, root)
 
-setTimeout(() => {
-  TinyReact.render(<Alert title="haha" name="111"/>, root)
-}, 2000)
+// TinyReact.render(<Alert title="hello" name="alert"/>, root)
+
+// setTimeout(() => {
+//   TinyReact.render(<Alert title="haha" name="111"/>, root)
+// }, 2000)
