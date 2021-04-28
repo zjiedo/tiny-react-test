@@ -6,40 +6,41 @@ const root = document.getElementById("root")
 function Demo () {
   return <div>&hearts;</div>
 }
-class Header extends TinyReact.Component {
-  render () {
-   return (
-    <div>
-      {this.props.title}
-      <Demo />
-    </div>
-   )
-  }
-}
+TinyReact.render(<Demo />, root)
+// class Header extends TinyReact.Component {
+//   render () {
+//    return (
+//     <div>
+//       {this.props.title}
+//       <Demo />
+//     </div>
+//    )
+//   }
+// }
 
-class DemoRef extends TinyReact.Component {
-  constructor (props) {
-    super(props)
-    this.handleClick = this.handleClick.bind(this)
-  }
-  handleClick () {
-    console.log(this.input.value)
-    console.log(this.header)
-  }
-  componentDidMount () {
-    console.log('componentDidMount')
-  }
-  render() {
-    return (
-      <div>
-        <input type="text" value="12213" ref={input => (this.input = input)}/>
-        <button onClick={this.handleClick}>按钮</button>
-        <Header title="haha" ref={header => (this.header = header)}/>
-      </div>
-    )
-  }
-}
-TinyReact.render(<DemoRef/>, root)
+// class DemoRef extends TinyReact.Component {
+//   constructor (props) {
+//     super(props)
+//     this.handleClick = this.handleClick.bind(this)
+//   }
+//   handleClick () {
+//     console.log(this.input.value)
+//     console.log(this.header)
+//   }
+//   componentDidMount () {
+//     console.log('componentDidMount')
+//   }
+//   render() {
+//     return (
+//       <div>
+//         <input type="text" value="12213" ref={input => (this.input = input)}/>
+//         <button onClick={this.handleClick}>按钮</button>
+//         <Header title="haha" ref={header => (this.header = header)}/>
+//       </div>
+//     )
+//   }
+// }
+// TinyReact.render(<DemoRef/>, root)
 // const virtualDOM = (
 //   <div className="container">
 //     <h1>你好 Tiny React</h1>

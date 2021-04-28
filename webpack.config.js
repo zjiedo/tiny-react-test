@@ -35,7 +35,7 @@ module.exports = {
     stats: "errors-only",
     // 不启动压缩
     compress: false,
-    host: "localhost",
+    host: '127.0.0.1',
     port: 5000
   }
 }
