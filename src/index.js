@@ -1,12 +1,18 @@
 
 import TinyReact from './TinyReact'
 
+const vartualDOm = (
+  <div className="container">
+    <h1>你好</h1>
+  </div>
+)
 
-const root = document.getElementById("root")
-function Demo () {
-  return <div>&hearts;</div>
-}
-TinyReact.render(<Demo />, root)
+console.log(vartualDOm)
+// const root = document.getElementById("root")
+// function Demo () {
+//   return <div>&hearts;</div>
+// }
+// TinyReact.render(<Demo />, root)
 // class Header extends TinyReact.Component {
 //   render () {
 //    return (
