@@ -1,13 +1,15 @@
 
 import TinyReact from './TinyReact'
-
+const root = document.getElementById("root")
 const vartualDOm = (
   <div className="container">
     <h1>你好</h1>
+    { 2 == 1 && 'hahaha' }
+    { 2 == 2 && 'hahaha' }
   </div>
 )
 
-console.log(vartualDOm)
+TinyReact.render(virtualDOM, root)
 // const root = document.getElementById("root")
 // function Demo () {
 //   return <div>&hearts;</div>
