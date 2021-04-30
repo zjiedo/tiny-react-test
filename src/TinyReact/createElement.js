@@ -13,7 +13,7 @@ export default function createElement (type, props, ...children) {
   return {
     type,
     props: Object.assign({ // 可以通过props属性拿到children
-      childElements
+      children: childElements
     }, props),
     children: childElements   
   }
