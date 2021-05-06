@@ -1,5 +1,5 @@
-import mountComponent from "./mountComponent"
 import mountElement from "./mountElement"
+import updateComponent from "./updateComponent"
 
 export default function diffComponent (
   virtualDOM,
@@ -9,7 +9,7 @@ export default function diffComponent (
 ) {
   if (isSameComponent(virtualDOM, oldComponent)) {
     // 同一个组件
-    mountComponent(virtualDOM, container)
+    updateComponent(virtualDOM, oldComponent, oldDOM, container)
   } else {
     // 不是同一个组件
     mountElement(virtualDOM, container, oldDOM)

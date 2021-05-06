@@ -12,11 +12,16 @@ export default function createDOMElement (virtualDOM ) {
     updateNodeElement(newElement, virtualDOM)
   }
   newElement.__virtualDOM = virtualDOM
+  // console.log(virtualDOM.children)
   // 递归创建子节点
   virtualDOM.children.forEach(child => {
     mountElement(child, newElement)
   })
 
+  // 判断ref
+  if (virtualDOM.props && virtualDOM.props.ref) {
+    virtualDOM.props.ref(newElement)
+  }
   return newElement
 }
 

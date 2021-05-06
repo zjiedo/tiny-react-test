@@ -134,20 +134,60 @@ const root = document.getElementById("root")
 // TinyReact.render(virtualDOM, root)
 
 // console.log(virtualDOM)
-
+class DemoNode extends TinyReact.Component {
+  constructor(props) {
+    super(props)
+  }
+  render () {
+    return (
+      <h1>哈哈哈哈</h1>
+    )
+  }
+}
 
 class Alert extends TinyReact.Component {
   constructor (props) {
     super(props)
     this.state = {
-      title: 'Default Title'
+      title: 'Default Title',
+      list: [{
+        id: 1,
+        value: 1
+      },{
+        id: 2,
+        value: 2
+      },{
+        id: 3,
+        value: 3
+      }]
     }
     this.handleClick = this.handleClick.bind(this)
   }
   handleClick () {
-    this.setState({
-      title: 'change hello'
+    let thisList = JSON.parse(JSON.stringify(this.state.list))
+    let newList = []
+    while(thisList.length) {
+      let item = thisList.pop()
+      newList.push(item)
+    }
+    newList.push({
+      id: Math.random(),
+      value: Math.random()
     })
+    console.log(newList)
+    this.setState({
+      title: 'change hello',
+      list: newList
+    })
+
+    // this.handleChange()
+  }
+  handleChange () {
+    let value = this.input.value
+    console.log(value)
+  }
+  componentDidMount () {
+    console.log('componentDidMount')
   }
   // componentWillReceiveProps (nextProps) {
   //   console.log(nextProps)
@@ -161,10 +201,20 @@ class Alert extends TinyReact.Component {
   render () {
     return (
       <div>
-        {this.props.title} <br />
+        {this.state.title} <br />
         <div>
-          { this.state.title }
+          {/* { this.state.title }
+          <input ref={input => (this.input = input)}/> */}
+          <ul>
+            {
+              this.state.list.map(item => {
+                return <li key={item.id}>{item.value}</li>
+              })
+            }
+          </ul>
           <button onClick={this.handleClick}>改变title</button>
+          {/* 组件对应的实例对象 */}
+          {/* <DemoNode ref={alert => (this.alert = alert)}/> */}
         </div>
       </div>
     )
@@ -172,20 +222,11 @@ class Alert extends TinyReact.Component {
 }
 TinyReact.render(<Alert title="hello"/>, root)
 
-class DemoNode extends TinyReact.Component {
-  constructor(props) {
-    super(props)
-  }
-  render () {
-    return (
-      <h1>哈哈哈哈</h1>
-    )
-  }
-}
-// TinyReact.render(<Alert title="hello" name="alert"/>, root)
 
-setTimeout(() => {
-  TinyReact.render(<DemoNode title="haha" name="111"/>, root)
-  // TinyReact.render(<Alert title="hello" name="alert"/>, root)
-}, 2000)
+// // TinyReact.render(<Alert title="hello" name="alert"/>, root)
+
+// setTimeout(() => {
+//   TinyReact.render(<DemoNode title="haha" name="111"/>, root)
+//   // TinyReact.render(<Alert title="hello" name="alert"/>, root)
+// }, 2000)
 
